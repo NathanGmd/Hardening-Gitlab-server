@@ -35,6 +35,10 @@ De plus une configuration ssh décente est faite via lynis.
 ```
 Là dessus une configuration pam va être incluse
 
+A partir de la le git lab est accessible en local :
+
+![image](https://github.com/user-attachments/assets/4fbe357b-2bac-48e6-b33c-f3bf3bfe0a7b)
+
 ## Montage du root de GitLab sur un autre volume logique
 
 Je vais utiliser lvm ici :
