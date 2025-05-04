@@ -95,3 +95,63 @@ Filesystem                  1K-blocks   Used Available Use% Mounted on
 /dev/mapper/gv1-gitlab_data   5074592 532924   4263140  12% /var/opt/gitlab
 ```
 On vois que le ficher c'est écrit au bon endroit ! ( avant de le suypprimer évidement pour ne pas laisser un root root )
+
+## Hardening 
+
+Pour ce tp, j'ai travailler sur la partie acces control. J'ai utilisé les fichiers de conf sudoers, sshd_config, faillock.conf, pam et modules + pwd, login.defs.
+Je ne vais pas mettre l'entièreté des fichier de conf ici car cela serait trop long. Je vais mettre les points concerné par l'audit lynis.
+
+```
+[+] Users, Groups and Authentication
+------------------------------------
+  - Administrator accounts                                    [ OK ]
+  - Unique UIDs                                               [ OK ]
+  - Consistency of group files (grpck)                        [ OK ]
+  - Unique group IDs                                          [ OK ]
+  - Unique group names                                        [ OK ]
+  - Password file consistency                                 [ OK ]
+  - Password hashing methods                                  [ OK ]
+  - Password hashing rounds (minimum)                         [ CONFIGURED ]
+  - Query system users (non daemons)                          [ DONE ]
+  - NIS+ authentication support                               [ NOT ENABLED ]
+  - NIS authentication support                                [ NOT ENABLED ]
+  - Sudoers file(s)                                           [ FOUND ]
+    - Permissions for directory: /etc/sudoers.d               [ OK ]
+    - Permissions for: /etc/sudoers                           [ OK ]
+    - Permissions for: /etc/sudoers.d/README                  [ OK ]
+  - PAM password strength tools                               [ OK ]
+  - PAM configuration files (pam.conf)                        [ FOUND ]
+  - PAM configuration files (pam.d)                           [ FOUND ]
+  - PAM modules                                               [ FOUND ]
+  - LDAP module in PAM                                        [ NOT FOUND ]
+  - Accounts without expire date                              [ SUGGESTION ]
+  - Accounts without password                                 [ OK ]
+  - Locked accounts                                           [ OK ]
+  - User password aging (minimum)                             [ CONFIGURED ]
+  - User password aging (maximum)                             [ CONFIGURED ]
+  - Checking expired passwords                                [ OK ]
+  - Checking Linux single user mode authentication            [ OK ]
+  - Determining default umask
+    - umask (/etc/profile)                                    [ OK ]
+    - umask (/etc/login.defs)                                 [ OK ]
+  - LDAP authentication support                               [ NOT ENABLED ]
+  - Logging failed login attempts                             [ ENABLED ]
+```
+```
+[+] File Permissions
+------------------------------------
+  - Starting file permissions check
+    File: /boot/grub/grub.cfg                                 [ OK ]
+    File: /etc/crontab                                        [ OK ]
+    File: /etc/group                                          [ OK ]
+    File: /etc/group-                                         [ OK ]
+    File: /etc/hosts.allow                                    [ OK ]
+    File: /etc/hosts.deny                                     [ OK ]
+    File: /etc/issue                                          [ OK ]
+    File: /etc/issue.net                                      [ OK ]
+    File: /etc/motd                                           [ OK ]
+    File: /etc/passwd                                         [ OK ]
+    File: /etc/passwd-                                        [ OK ]
+    File: /etc/ssh/sshd_config                                [ OK ]
+    Directory: /root/.ssh                                     [ OK ]
+```
